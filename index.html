@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're Invited!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#f7f1e8;color:#c0273f;font-family:"DM Mono",ui-monospace,monospace;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.hearts span{position:absolute;bottom:-40px;line-height:1;animation:rise linear infinite}
+@keyframes rise{0%{transform:translate(0,0) rotate(-10deg);opacity:0}12%{opacity:var(--o)}50%{transform:translate(var(--x),-55vh) rotate(10deg)}88%{opacity:var(--o)}100%{transform:translate(0,-115vh) rotate(-10deg);opacity:0}}
+@keyframes wiggle{0%,100%{transform:rotate(0) scale(1)}15%{transform:rotate(-14deg) scale(1.12)}30%{transform:rotate(10deg) scale(1.05)}45%{transform:rotate(-6deg) scale(1.08)}60%{transform:rotate(0) scale(1)}}
+.card{position:relative;z-index:1;width:min(680px,92vw);height:min(730px,94vh);border-radius:340px 340px 28px 28px;background:#f6cdd6;box-shadow:0 10px 30px rgba(192,39,63,.10);display:flex;flex-direction:column;align-items:center;text-align:center;padding:150px 72px 44px}
+.card::before{content:"";position:absolute;inset:16px;border:1.5px solid #c0273f;border-radius:324px 324px 16px 16px;pointer-events:none}
+.bow{font-size:22px;line-height:1;display:inline-block;transform-origin:50% 60%;animation:wiggle 2.8s ease-in-out infinite}
+h1{margin:22px 0 0;font:400 80px/1 "DM Serif Display",serif;letter-spacing:-.015em;white-space:nowrap}
+h1 em{font-style:italic}
+.sub{margin:16px 0 0;font:italic 400 20px/1.4 "DM Serif Display",serif;max-width:380px;text-wrap:balance}
+.div{display:flex;align-items:center;gap:12px;margin:34px 0 30px;width:240px}
+.div i{flex:1;height:1px;background:#c0273f;opacity:.4}
+.div b{font-size:12px;line-height:1;font-weight:400}
+.date{font:400 36px/1 "DM Serif Display",serif}
+.yawn{margin-top:8px;font-size:13px;letter-spacing:.04em;opacity:.8}
+.details{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px;margin-top:30px;width:100%;max-width:500px}
+.item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 16px}
+.lbl{font:500 11px/1 "DM Mono",monospace;letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+.val{font:400 28px/1.05 "DM Serif Display",serif}
+.note{font:italic 400 16px/1.4 "DM Serif Display",serif;text-wrap:balance}
+.star{font-size:10px;line-height:1;opacity:.6}
+.foot{margin:auto 0 0;font-size:12px;line-height:1.5;letter-spacing:.06em;opacity:.75;text-wrap:balance}
+@media (max-width:700px){
+  .card{width:calc(100vw - 40px);height:auto;min-height:calc(100vh - 64px);border-radius:50vw 50vw 24px 24px;padding:96px 30px 34px}
+  .card::before{inset:12px;border-radius:calc(50vw - 32px) calc(50vw - 32px) 14px 14px}
+  .bow{font-size:20px}
+  h1{margin-top:16px;font-size:58px;line-height:.95;white-space:normal}
+  h1 em{display:block}
+  .sub{font-size:17px;margin-top:14px}
+  .div{margin:26px 0 24px;width:160px}
+  .date{font-size:22px;line-height:1.1;white-space:nowrap}
+  .yawn{font-size:12px}
+  .details{grid-template-columns:1fr;gap:14px;margin-top:22px}
+  .item{padding:0;gap:8px}
+  .lbl{font-size:10px;letter-spacing:.2em}
+  .val{font-size:22px}
+  .note{font-size:14px}
+  .star{font-size:9px}
+  .foot{margin-top:28px;font-size:11px;padding:0 20px}
+}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<main class="card">
+  <span class="bow">🎀</span>
+  <h1>You're <em>Invited!</em></h1>
+  <p class="sub">(for my birthday. obviously. who else would I throw a party for.)</p>
+  <div class="div"><i></i><b>✦</b><i></i></div>
+  <div class="date">Sat, 7 Nov · 6 PM onwards</div>
+  <div class="yawn">(leave when I yawn)</div>
+  <div class="details">
+    <div class="item">
+      <div class="lbl">Venue</div>
+      <div class="val">My place 🏠</div>
+      <div class="note">Aai's cooking, so you better show up</div>
+    </div>
+    <div class="star">✦</div>
+    <div class="item">
+      <div class="lbl">Dress code</div>
+      <div class="val">Ethnic</div>
+      <div class="note">I'm wearing a saree, so you have to be overdressed too</div>
+    </div>
+  </div>
+  <p class="foot">*return gifts only if you actually dress up.</p>
+</main>
+<script>
+(function(){
+  var box=document.getElementById('hearts'),cols=['#f3b6c4','#f7c9d3','#eea7b8'];
+  var n=window.innerWidth<700?14:26;
+  for(var i=0;i<n;i++){
+    var s=document.createElement('span'),d=9+Math.random()*9;
+    s.textContent='♥';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.fontSize=(12+Math.random()*22)+'px';
+    s.style.color=cols[i%3];
+    s.style.setProperty('--x',((Math.random()-.5)*60)+'px');
+    s.style.setProperty('--o',(.45+Math.random()*.4).toFixed(2));
+    s.style.animationDuration=d+'s';
+    s.style.animationDelay=(-Math.random()*d)+'s';
+    box.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
